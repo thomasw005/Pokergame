@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-// Test
+// Test1
 struct card{
     int cardSuit;
     int cardFace;
