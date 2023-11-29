@@ -172,7 +172,6 @@ enum handType analyzeHand(int suits[], int faces[]) {
     num_consec = 0;
     while (faces[rank] == 0) {
         rank++;
-
     }
 
     // Counts the consecutive non-zero faces.
