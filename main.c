@@ -53,18 +53,14 @@ int main() {
     int suitsInHandTwo[] = {0, 0 ,0 ,0};
 
     // Create and initialize hand two.
-    int facesInHandOne[] = {0, 0 ,0 ,0,0,0,0,0,0,0,0,0,0};
-    int facesInHandTwo[] = {0, 0 ,0 ,0,0,0,0,0,0,0,0,0,0};
-
+    int facesInHandOne[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int facesInHandTwo[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     // Fill deck with cards.
     for (int i = 0; i < deckLength; i++) {
         deck[i].cardSuit = i / FACES + 1;
         deck[i].cardFace = i % FACES + 1;
     }
-
-    // Display starting deck.
-    // displayDeck(deck, deckLength);
 
     // Draw first hand of five cards from deck.
     drawHand(deck, suitsInHandOne, facesInHandOne, &deckLength);
@@ -92,10 +88,7 @@ int main() {
     } else {
         printf("DRAW\n");
     }
-
-    // Display final deck.
-    // displayDeck(deck, deckLength);
-
+    
     return 0;
 }
 
@@ -103,6 +96,7 @@ int main() {
 // Removes that card from the deck and makes "deckLength" smaller.
 void drawHand(struct card deck[], int suitsInHand[], int facesInHand[], int* ptrDeckLength) {
     int position = 0;
+    
     for (int i = 0; i < HANDSIZE; i++) {
         position = rand() % *ptrDeckLength;
         suitsInHand[deck[position].cardSuit - 1] += 1;
@@ -124,19 +118,24 @@ void displayHand(int suits[], int faces[]) {
     for (int i = 0; i < SUITS; i++) {
         printf("%d ", suits[i]);
     }
+    
     printf("\n");
+    
     for (int i = 0; i < FACES; i++) {
         printf("%d ", faces[i]);
     }
+    
     printf("\n");
 }
 
 // Loops through deck card array and prints out each objects suit and face.
 void displayDeck(struct card array[], int deckLength) {
     printf("CURRENT DECK:\n");
+    
     for (int i = 0; i < deckLength; i++) {
         printf("[%d, %d]\n", array[i].cardSuit, array[i].cardFace);
     }
+    
     printf("\n\n");
 }
 
@@ -162,6 +161,7 @@ enum handType analyzeHand(int suits[], int faces[]) {
     for (rank = 9; rank < FACES && faces[rank]; rank++) {
         num_consec++;
     }
+    
     if (num_consec == SUITS && faces[0] == 1) {
         royal = true;
     }
@@ -170,6 +170,7 @@ enum handType analyzeHand(int suits[], int faces[]) {
     // Checks for a straight – one each of 5,6,7,8,9.
     rank = 0;
     num_consec = 0;
+    
     while (faces[rank] == 0) {
         rank++;
     }
@@ -178,6 +179,7 @@ enum handType analyzeHand(int suits[], int faces[]) {
     for (; rank < FACES && faces[rank]; rank++) {
         num_consec++;
     }
+    
     if (num_consec == HANDSIZE) {
         straight = true;
     }
